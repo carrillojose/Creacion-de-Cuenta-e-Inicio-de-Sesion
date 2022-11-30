@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/index2.css">
+    <title>Inicio de sesion</title>
+</head>
+<body>
+  <div id="img">
+    <img src="https://victorroblesweb.es/wp-content/uploads/2019/04/miniatura-youtube-javascript.png" alt="">
+</div>
+  <div class="rt">
+    <h1 id="f_titulo">Iniciar Sesion</h1>
+    <p id="es">Correo Electronico</p>
+    <input type="email" name="" id="email1"> <br>
+
+    <p id="con">Contraseña</p>
+    <input type="password" name="" id="pass1"> <br>
+<br>
+    <button id="ingresar1">Iniciar</button>
+    <div id="ini"><a id="e" href="./index.html" target="_blank">Crear cuenta</a></div>
+    </div>
+  </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+        //import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDoe7MtA0EJuQ1rzYrVumEAJ_tKCUm4ZWg",
+          authDomain: "usuario-693dc.firebaseapp.com",
+          projectId: "usuario-693dc",
+          storageBucket: "usuario-693dc.appspot.com",
+          messagingSenderId: "75225525021",
+          appId: "1:75225525021:web:d4ecfba615685512c88ff4"
+        };
+      
+        // Initialize Firebase y autenticacion
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        document.getElementById("ingresar1").addEventListener("click", function(){
+    //Obteniendo valores escritos
+    const email1 = document.getElementById("email1").value
+    const password1 = document.getElementById("pass1").value
+
+    signInWithEmailAndPassword(auth, email1, password1)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+    alert("Inicio de sesion exitoso")
+    //Abrimos una pagina
+    window.open("https://www.youtube.com/")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    alert("No se encontro el correo (Crea una nueva cuenta o verifica si ingresaste el correo mal)")
+  });
+})
+      </script>
+</body>
+</html>
